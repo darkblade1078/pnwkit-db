@@ -1,4 +1,4 @@
-import {Kit} from '../..';
+import { Kit } from '../..';
 import {
   QueryWarattacksArgs,
   QueryWarattacksOrderByOrderByClause, WarAttack, WarAttackPaginator,
@@ -9,13 +9,12 @@ export interface Parameters {
   id?: number[];
   min_id?: number;
   max_id?: number;
-
   war_id?: number[];
-
+  before?: Date;
+  after?: Date;
+  orderBy?: QueryWarattacksOrderByOrderByClause;
   first?: number;
   page?: number;
-
-  orderBy?: QueryWarattacksOrderByOrderByClause;
 }
 
 /**
@@ -28,10 +27,10 @@ export interface Parameters {
 export default async function warAttackQuery(this: Kit, params: Parameters, query: string, paginator?: false): Promise<WarAttack[]>;
 export default async function warAttackQuery(this: Kit, params: Parameters, query: string, paginator: true): Promise<WarAttackPaginator>;
 export default async function warAttackQuery(
-    this: Kit,
-    params: Parameters,
-    query: string,
-    paginator?: boolean,
+  this: Kit,
+  params: Parameters,
+  query: string,
+  paginator?: boolean,
 ): Promise<WarAttack[] | WarAttackPaginator> {
   const argsToParameters = GraphQL.generateParameters(params as QueryWarattacksArgs);
 

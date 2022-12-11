@@ -5,7 +5,7 @@ import GraphQL from '../../services/GraphQL';
 /**
  * Gets all color trade blocs
  * @param {string} query The graphql query to get info with
- * @return {Promise<Treasure[]>}
+ * @return {Promise<Color[]>}
  */
 export default async function colorQuery(
     this: Kit,

@@ -7,18 +7,19 @@ import {
 import GraphQL from '../../services/GraphQL';
 
 export interface Parameters {
-  id?: number;
+  id?: number[];
+  min_id?: number;
+  max_id?: number;
+  before?: Date;
+  after?: Date;
   type?: TradeType | string;
-
-  first?: number;
-  page?: number;
-
-  nation_id?: string[];
+  nation_id?: number[];
   offer_resource?: string;
   buy_or_sell?: string;
   accepted?: boolean;
-
   orderBy?: QueryTradesOrderByOrderByClause
+  first: number;
+  page?: number;
 }
 
 /**

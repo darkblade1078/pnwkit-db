@@ -1,4 +1,4 @@
-import {Kit} from '../..';
+import { Kit } from '../..';
 import {
   Alliance,
   AlliancePaginator,
@@ -7,10 +7,12 @@ import {
 import GraphQL from '../../services/GraphQL';
 
 export interface Parameters {
-  first: number;
   id?: number[];
-  page?: number;
+  name?: string[];
+  color?: string;
   orderBy?: QueryAlliancesOrderByOrderByClause;
+  first: number;
+  page?: number;
 }
 
 /**
@@ -23,19 +25,18 @@ export interface Parameters {
 export default async function allianceQuery(this: Kit, params: Parameters, query: string, paginator?: false): Promise<Alliance[]>;
 export default async function allianceQuery(this: Kit, params: Parameters, query: string, paginator: true): Promise<AlliancePaginator>;
 export default async function allianceQuery(
-    this: Kit,
-    params: Parameters,
-    query: string,
-    paginator?: boolean,
+  this: Kit,
+  params: Parameters,
+  query: string,
+  paginator?: boolean,
 ): Promise<AlliancePaginator | Alliance[]> {
   const argsToParameters = GraphQL.generateParameters(params as QueryAlliancesArgs);
 
   const res = await GraphQL.makeCall(`
     {
       alliances${argsToParameters} {
-        ${
-          (paginator) ?
-          `
+        ${(paginator) ?
+      `
           paginatorInfo {
             count,
             currentPage,
@@ -46,8 +47,8 @@ export default async function allianceQuery(
             perPage,
             total
           },
-          `:''
-}
+          `: ''
+    }
         data {
           ${query}
         }

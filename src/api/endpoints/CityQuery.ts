@@ -1,4 +1,4 @@
-import {Kit} from '../..';
+import { Kit } from '../..';
 import {
   City,
   CityPaginator,
@@ -10,11 +10,9 @@ import GraphQL from '../../services/GraphQL';
 export interface Parameters {
   id?: number[];
   nation_id?: number[];
-
+  orderBy?: QueryCitiesOrderByOrderByClause;
   first?: number;
   page?: number;
-
-  orderBy?: QueryCitiesOrderByOrderByClause;
 }
 
 /**
@@ -27,18 +25,17 @@ export interface Parameters {
 export default async function cityQuery(this: Kit, params: Parameters, query: string, paginator?: false): Promise<City[]>;
 export default async function cityQuery(this: Kit, params: Parameters, query: string, paginator: true): Promise<CityPaginator>;
 export default async function cityQuery(
-    this: Kit,
-    params: Parameters,
-    query: string,
-    paginator?: boolean,
+  this: Kit,
+  params: Parameters,
+  query: string,
+  paginator?: boolean,
 ): Promise<City[] | CityPaginator> {
   const argsToParameters = GraphQL.generateParameters(params as QueryCitiesArgs);
 
   const res = await GraphQL.makeCall(`
     {
       cities${argsToParameters} {
-       ${
-    (paginator) ?
+       ${(paginator) ?
       `
           paginatorInfo {
             count,
@@ -50,8 +47,8 @@ export default async function cityQuery(
             perPage,
             total
           },
-          `:''
-}
+          `: ''
+    }
         data {
           ${query}
         }

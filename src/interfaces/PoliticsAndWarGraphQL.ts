@@ -88,6 +88,26 @@ export type QueryNationsArgs = {
   page?: Maybe<Scalars['Int']>
 }
 
+export type QueryEmbargoesArgs = {
+  id?: Maybe<Array<Maybe<Scalars['Int']>>>
+  nation_id?: Maybe<Array<Maybe<Scalars['Int']>>>
+  min_id?: Maybe<Scalars['Int']>
+  max_id?: Maybe<Scalars['Int']>
+  orderBy?: Maybe<Array<QueryEmbargoesOrderByOrderByClause>>
+  first?: Maybe<Scalars['Int']>
+  page?: Maybe<Scalars['Int']>
+}
+
+export type QueryTreasureTradesArgs = {
+  id?: Maybe<Array<Maybe<Scalars['Int']>>>
+  nation_id?: Maybe<Array<Maybe<Scalars['Int']>>>
+  min_id?: Maybe<Scalars['Int']>
+  max_id?: Maybe<Scalars['Int']>
+  orderBy?: Maybe<Array<QueryTreasureTradesOrderByOrderByClause>>
+  first?: Maybe<Scalars['Int']>
+  page?: Maybe<Scalars['Int']>
+}
+
 export type QueryAlliancesArgs = {
   id?: Maybe<Array<Maybe<Scalars['Int']>>>
   name?: Maybe<Array<Maybe<Scalars['String']>>>
@@ -146,7 +166,6 @@ export type QueryWarattacksArgs = {
 
 export type QueryTreatiesArgs = {
   id?: Maybe<Array<Maybe<Scalars['Int']>>>
-  limit?: Maybe<Scalars['Int']>
   orderBy?: Maybe<Array<QueryTreatiesOrderByOrderByClause>>
   first?: Maybe<Scalars['Int']>
   page?: Maybe<Scalars['Int']>
@@ -850,15 +869,35 @@ export type QueryNationsOrderByOrderByClause = {
   order: SortOrder
 }
 
+export type QueryTreasureTradesOrderByOrderByClause = {
+  column: QueryTreasureTradesOrderByColumn
+  order: SortOrder
+}
+
+export type QueryEmbargoesOrderByOrderByClause = {
+  column: QueryEmbargoesOrderByColumn
+  order: SortOrder
+}
+
+export enum QueryTreasureTradesOrderByColumn {
+  ID = 'ID',
+}
+
+export enum QueryEmbargoesOrderByColumn {
+  ID = 'ID',
+  DATE = 'DATE',
+}
+
 export enum QueryNationsOrderByColumn {
-  Id = 'ID',
-  Date = 'DATE',
-  Soldiers = 'SOLDIERS',
-  Tanks = 'TANKS',
-  Aircraft = 'AIRCRAFT',
-  Ships = 'SHIPS',
-  Missiles = 'MISSILES',
-  Nukes = 'NUKES'
+  ID = 'ID',
+  DATE = 'DATE',
+  SOLDIERS = 'SOLDIERS',
+  TANKS = 'TANKS',
+  AIRCRAFT = 'AIRCRAFT',
+  SHIPS = 'SHIPS',
+  MISSILES = 'MISSILES',
+  NUKES = 'NUKES',
+  CITIES = "CITIES"
 }
 
 export enum SortOrder {
@@ -902,9 +941,9 @@ export type QueryAlliancesOrderByOrderByClause = {
 }
 
 export enum QueryAlliancesOrderByColumn {
-  Id = 'ID',
-  Date = 'DATE',
-  Score = 'SCORE'
+  ID = 'ID',
+  DATE = 'DATE',
+  SCORE = 'SCORE'
 }
 
 export type AlliancePaginator = {
@@ -949,11 +988,12 @@ export type QueryTradesOrderByOrderByClause = {
 }
 
 export enum QueryTradesOrderByColumn {
-  Id = 'ID',
-  Date = 'DATE',
-  DateAccepted = 'DATE_ACCEPTED',
-  OfferResource = 'OFFER_RESOURCE',
-  OfferAmount = 'OFFER_AMOUNT'
+  ID = 'ID',
+  DATE = 'DATE',
+  DATE_ACCEPTED = 'DATE_ACCEPTED',
+  OFFER_RESOURCE = 'OFFER_RESOURCE',
+  OFFER_AMOUNT = 'OFFER_AMOUNT',
+  RETURN_AMOUNT = 'RETURN_AMOUNT',
 }
 
 export type TradePaginator = {

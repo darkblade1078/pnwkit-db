@@ -1,4 +1,4 @@
-import {Kit} from '../..';
+import { Kit } from '../..';
 import {
   Bounty,
   BountyPaginator,
@@ -11,11 +11,9 @@ export interface Parameters {
   nation_id?: number[];
   min_amount?: number;
   max_amount?: number;
-
+  orderBy?: QueryBountiesOrderByOrderByClause;
   first?: number;
   page?: number;
-
-  orderBy?: QueryBountiesOrderByOrderByClause;
 }
 
 /**
@@ -28,18 +26,17 @@ export interface Parameters {
 export default async function bountyQuery(this: Kit, params: Parameters, query: string, paginator?: false): Promise<Bounty[]>;
 export default async function bountyQuery(this: Kit, params: Parameters, query: string, paginator: true): Promise<BountyPaginator>;
 export default async function bountyQuery(
-    this: Kit,
-    params: Parameters,
-    query: string,
-    paginator?: boolean,
+  this: Kit,
+  params: Parameters,
+  query: string,
+  paginator?: boolean,
 ): Promise<Bounty[] | BountyPaginator> {
   const argsToParameters = GraphQL.generateParameters(params as QueryBountiesArgs);
 
   const res = await GraphQL.makeCall(`
     {
       bounties${argsToParameters} {
-        ${
-    (paginator) ?
+        ${(paginator) ?
       `
           paginatorInfo {
             count,
@@ -51,8 +48,8 @@ export default async function bountyQuery(
             perPage,
             total
           },
-          `:''
-}
+          `: ''
+    }
         data {
           ${query}
         }

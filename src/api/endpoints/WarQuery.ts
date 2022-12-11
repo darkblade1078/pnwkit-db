@@ -1,19 +1,20 @@
-import {Kit} from '../..';
-import {QueryWarsArgs, QueryWarsOrderByOrderByClause, War, WarPaginator} from '../../interfaces/PoliticsAndWarGraphQL';
+import { Kit } from '../..';
+import { QueryWarsArgs, QueryWarsOrderByOrderByClause, War, WarPaginator } from '../../interfaces/PoliticsAndWarGraphQL';
 import GraphQL from '../../services/GraphQL';
 
 export interface Parameters {
   id?: number[];
+  min_id?: number;
+  max_id?: number;
+  before?: Date;
+  after?: Date;
   days_ago?: number;
   active?: boolean;
   nation_id?: number[];
-  min_id?: number;
-  max_id?: number;
   alliance_id?: number[];
+  orderBy?: QueryWarsOrderByOrderByClause
   first?: number;
   page?: number;
-
-  orderBy?: QueryWarsOrderByOrderByClause
 }
 
 /**
@@ -26,18 +27,17 @@ export interface Parameters {
 export default async function warQuery(this: Kit, params: Parameters, query: string, paginator?: false): Promise<War[]>;
 export default async function warQuery(this: Kit, params: Parameters, query: string, paginator: true): Promise<WarPaginator>;
 export default async function warQuery(
-    this: Kit,
-    params: Parameters,
-    query: string,
-    paginator?: boolean,
+  this: Kit,
+  params: Parameters,
+  query: string,
+  paginator?: boolean,
 ): Promise<War[] | WarPaginator> {
   const argsToParameters = GraphQL.generateParameters(params as QueryWarsArgs);
 
   const res = await GraphQL.makeCall(`
     {
       wars${argsToParameters} {
-        ${
-    (paginator) ?
+        ${(paginator) ?
       `
           paginatorInfo {
             count,
@@ -49,8 +49,8 @@ export default async function warQuery(
             perPage,
             total
           },
-          `:''
-}
+          `: ''
+    }
         data {
           ${query}
         }

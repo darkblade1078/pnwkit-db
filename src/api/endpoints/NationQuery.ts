@@ -1,9 +1,11 @@
-import {Kit} from '../..';
+import { Kit } from '../..';
 import {
+  Maybe,
   Nation,
   NationPaginator,
   QueryNationsArgs,
   QueryNationsOrderByOrderByClause,
+  Scalars,
 } from '../../interfaces/PoliticsAndWarGraphQL';
 import GraphQL from '../../services/GraphQL';
 
@@ -17,23 +19,26 @@ export enum AlliancePosition {
 }
 
 export interface Parameters {
-  first: number;
   id?: number[];
-  name?: string;
   nation_name?: string[];
   leader_name?: string[];
   alliance_id?: number[];
-  alliance_position?: AlliancePosition;
-  color?: string;
-  created_after?: string;
+  alliance_position?: number[];
+  alliance_position_id?: number[];
+  color?: string[];
+  created_after?: Date;
   min_score?: number;
   max_score?: number;
-  cities?: number;
+  cities?: number[];
   min_cities?: number;
-  max_cities?: number;
-  vmode?: boolean;
+  max_cities?: number; 
+  vmode?: boolean
+  discord?: string[];
+  discord_id?: string[];
+  tax_id?: number[];
+  orderBy?: QueryNationsOrderByOrderByClause
+  first: number
   page?: number;
-  orderBy?: QueryNationsOrderByOrderByClause;
 }
 
 /**
@@ -46,19 +51,18 @@ export interface Parameters {
 export default async function nationQuery(this: Kit, params: Parameters, query: string, paginator?: false): Promise<Nation[]>;
 export default async function nationQuery(this: Kit, params: Parameters, query: string, paginator: true): Promise<NationPaginator>;
 export default async function nationQuery(
-    this: Kit,
-    params: Parameters,
-    query: string,
-    paginator?: boolean,
+  this: Kit,
+  params: Parameters,
+  query: string,
+  paginator?: boolean,
 ): Promise<NationPaginator | Nation[]> {
   const argsToParameters = GraphQL.generateParameters(params as QueryNationsArgs);
 
   const res = await GraphQL.makeCall(`
     {
       nations${argsToParameters} {
-        ${
-          (paginator) ?
-          `
+        ${(paginator) ?
+      `
           paginatorInfo {
             count,
             currentPage,
@@ -69,8 +73,8 @@ export default async function nationQuery(
             perPage,
             total
           },
-          `:''
-}
+          `: ''
+    }
         data {
           ${query}
         }

@@ -1,4 +1,4 @@
-import {Kit} from '../..';
+import { Kit } from '../..';
 import {
   Bankrec,
   BankrecPaginator,
@@ -8,18 +8,19 @@ import GraphQL from '../../services/GraphQL';
 
 export interface Parameters {
   id?: number[];
+  min_id?: number;
+  max_id?: number;
+  before?: Date;
+  after?: Date;
   stype?: number[];
   rtype?: number[];
-
   or_type?: number;
   sid?: number;
   rid?: number;
-
   or_id?: number;
-
+  orderBy?: QueryBankrecsOrderByOrderByClause;
   first?: number;
   page?: number;
-  orderBy?: QueryBankrecsOrderByOrderByClause;
 }
 
 /**
@@ -33,18 +34,17 @@ export interface Parameters {
 export default async function bankRecordsQuery(this: Kit, params: Parameters, query: string, paginator?: false): Promise<Bankrec[]>;
 export default async function bankRecordsQuery(this: Kit, params: Parameters, query: string, paginator: true): Promise<BankrecPaginator>;
 export default async function bankRecordsQuery(
-    this: Kit,
-    params: Parameters,
-    query: string,
-    paginator?: boolean,
+  this: Kit,
+  params: Parameters,
+  query: string,
+  paginator?: boolean,
 ): Promise<Bankrec[] | BankrecPaginator> {
   const argsToParameters = GraphQL.generateParameters(params as QueryBankrecsArgs);
 
   const res = await GraphQL.makeCall(`
     {
       bankrecs${argsToParameters} {
-        ${
-    (paginator) ?
+        ${(paginator) ?
       `
           paginatorInfo {
             count,
@@ -56,8 +56,8 @@ export default async function bankRecordsQuery(
             perPage,
             total
           },
-          `:''
-}
+          `: ''
+    }
         data {
           ${query}
         }
