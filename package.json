@@ -1,15 +1,15 @@
 {
-  "name": "pnwkit",
-  "version": "2.2.1",
-  "description": "An API V3 SDK for PnW with GraphQL Typings",
+  "name": "pnwkit-db",
+  "version": "2.2.2",
+  "description": "A Forked API V3 SDK for PnW with GraphQL Typings",
   "main": "./build/src/index.js",
-  "repository": "https://github.com/bsnk-dev/pnwkit",
+  "repository": "https://github.com/darkblade1078/pnwkit-db",
   "keywords": [
     "politics and war",
     "pnwkit",
     "pnw",
     "api",
-    "bann"
+    "darkblade"
   ],
   "scripts": {
     "build": "tsc",
@@ -17,7 +17,7 @@
     "docs": "typedoc src/index.ts src/api src/interfaces/PoliticsAndWarGraphQL.ts",
     "test": "npm run clean:build && npm run build && mocha ./build/test --recursive --timeout 10000"
   },
-  "author": "bsnk-dev",
+  "author": "darkblade",
   "license": "MIT",
   "devDependencies": {
     "@types/memoizee": "^0.4.6",
