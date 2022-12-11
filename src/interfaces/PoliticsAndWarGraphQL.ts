@@ -343,6 +343,7 @@ export type Nation = {
   specialized_police_training_program?: Maybe<Scalars['Boolean']>
   /** @deprecated Use advanced_engineering_corps instead */
   adv_engineering_corps?: Maybe<Scalars['Boolean']>
+  advanced_engineering_corps?: Maybe<Scalars['Boolean']>
   government_support_agency?: Maybe<Scalars['Boolean']>
   research_and_development_center?: Maybe<Scalars['Boolean']>
   resource_produciton_center?: Maybe<Scalars['Boolean']>
@@ -875,6 +876,12 @@ export type NationPaginator = {
   __typename?: 'NationPaginator'
   paginatorInfo: PaginatorInfo
   data: Array<Nation>
+}
+
+export type EmbargoPaginator = {
+  __typename?: 'EmbargoPaginator'
+  paginatorInfo: PaginatorInfo
+  data: Array<Embargo>
 }
 
 export type PaginatorInfo = {
