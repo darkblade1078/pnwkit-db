@@ -54,6 +54,8 @@ export type Query = {
   baseball_games?: Maybe<BBGamePaginator>
   baseball_teams?: Maybe<BBTeamPaginator>
   baseball_players?: Maybe<BBPlayerPaginator>
+  embargoes?: Maybe<Array<EmbargoPaginator>>
+  treasure_trades?: Maybe<Array<TreasureTradePaginator>>
 }
 
 export type TreasureTrade = {
