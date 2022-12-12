@@ -43,6 +43,35 @@ class GraphQLService {
     };
   }
 
+  public async makeMutationCall(query: string, apiKey: string, x_apikey: string): Promise<ResponseAndMetadataI> {
+    if (!apiKey) throw new Error('GraphQLService: Cannot make a call without an API key!');
+    if(!x_apikey) throw new Error('GraphQLService: Cannot make a call without an X-API key!');
+
+    const res = await superagent.get(this.politicsAndWarAPIRoot)
+        .query({
+          api_key: apiKey,
+          'X-Bot-Key': x_apikey,
+          query,
+        })
+        .accept('json')
+        .then()
+        .catch((e: Error) => {
+          throw new Error(`GraphQLService: Failed to make api call, ${e}`);
+        });
+
+    if (!res.body.data) throw new Error(`GraphQLService: Received no data from API call, ${JSON.stringify(res.body)}`);
+
+    return {
+      data: res.body.data,
+      rateLimit: {
+        resetAfterSeconds: Number(res.get('X-RateLimit-Reset-After')),
+        limit: Number(res.get('X-RateLimit-Limit')),
+        remaining: Number(res.get('X-RateLimit-Remaining')),
+        reset: Number(res.get('X-RateLimit-Reset')),
+      },
+    };
+  }
+
   /**
    * Takes a query and outputs query Parameters
    * @param {AnyQuery} queryParameters Any one of the five queries that take Parameters

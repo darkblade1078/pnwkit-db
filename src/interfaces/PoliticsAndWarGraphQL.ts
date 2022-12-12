@@ -7,7 +7,9 @@ export type AnyQuery =
   QueryBankrecsArgs |
   QueryBountiesArgs |
   QueryCitiesArgs |
-  QueryWarattacksArgs;
+  QueryWarattacksArgs |
+  QueryTreasureTradesArgs |
+  QueryTreatiesArgs;
 
 export type Maybe<T> = T | null
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -46,9 +48,9 @@ export type Query = {
   treaties?: Maybe<TreatyPaginator>
   cities?: Maybe<CityPaginator>
   bankrecs?: Maybe<BankrecPaginator>
-  baseball_games?: Maybe<BbGamePaginator>
-  baseball_teams?: Maybe<BbTeamPaginator>
-  baseball_players?: Maybe<BbPlayerPaginator>
+  baseball_games?: Maybe<BBGamePaginator>
+  baseball_teams?: Maybe<BBTeamPaginator>
+  baseball_players?: Maybe<BBPlayerPaginator>
 }
 
 export type TreasureTrade = {
@@ -192,21 +194,21 @@ export type QueryBankrecsArgs = {
   page?: Maybe<Scalars['Int']>
 }
 
-export type QueryBaseball_GamesArgs = {
+export type QueryBaseballGamesArgs = {
   team_id?: Maybe<Array<Maybe<Scalars['Int']>>>
   orderBy?: Maybe<Array<QueryBaseballGamesOrderByOrderByClause>>
   first?: Maybe<Scalars['Int']>
   page?: Maybe<Scalars['Int']>
 }
 
-export type QueryBaseball_TeamsArgs = {
+export type QueryBaseballTeamsArgs = {
   id?: Maybe<Array<Maybe<Scalars['Int']>>>
   orderBy?: Maybe<Array<QueryBaseballTeamsOrderByOrderByClause>>
   first?: Maybe<Scalars['Int']>
   page?: Maybe<Scalars['Int']>
 }
 
-export type QueryBaseball_PlayersArgs = {
+export type QueryBaseballPlayersArgs = {
   id?: Maybe<Array<Maybe<Scalars['Int']>>>
   team_id?: Maybe<Array<Maybe<Scalars['Int']>>>
   orderBy?: Maybe<Array<QueryBaseballPlayersOrderByOrderByClause>>
@@ -1151,7 +1153,7 @@ export enum QueryBaseballGamesOrderByColumn {
   Atscore = 'ATSCORE'
 }
 
-export type BbGamePaginator = {
+export type BBGamePaginator = {
   __typename?: 'BBGamePaginator'
   paginatorInfo: PaginatorInfo
   data: Array<BBGame>
@@ -1242,7 +1244,7 @@ export enum QueryBaseballTeamsOrderByColumn {
   Games = 'GAMES'
 }
 
-export type BbTeamPaginator = {
+export type BBTeamPaginator = {
   __typename?: 'BBTeamPaginator'
   paginatorInfo: PaginatorInfo
   data: Array<BBTeam>
@@ -1264,7 +1266,7 @@ export enum QueryBaseballPlayersOrderByColumn {
   Overall = 'OVERALL'
 }
 
-export type BbPlayerPaginator = {
+export type BBPlayerPaginator = {
   __typename?: 'BBPlayerPaginator'
   paginatorInfo: PaginatorInfo
   data: Array<BBPlayer>

@@ -1,22 +1,11 @@
 import { Kit } from '../..';
 import {
-  Maybe,
   Nation,
   NationPaginator,
   QueryNationsArgs,
   QueryNationsOrderByOrderByClause,
-  Scalars,
 } from '../../interfaces/PoliticsAndWarGraphQL';
 import GraphQL from '../../services/GraphQL';
-
-export enum AlliancePosition {
-  Noalliance = 0,
-  Applicant = 1,
-  Member = 2,
-  Officer = 3,
-  Heir = 4,
-  Leader = 5,
-}
 
 export interface Parameters {
   id?: number[];

@@ -12,6 +12,9 @@ import embargoQuery from './endpoints/EmbargoQuery';
 import treasureTradeQuery from './endpoints/TreasureTradeQuery';
 import ApiKeyDetailsQuery from './endpoints/ApiKeyDetailsQuery';
 import treatyQuery from './endpoints/TreatyQuery';
+import BBGameQuery from './endpoints/Baseball/BBGameQuery';
+import BBPlayerQuery from './endpoints/Baseball/BBPlayerQuery';
+import BBTeamQuery from './endpoints/Baseball/BBTeamQuery';
 
 export default class PnwKitAPI {
   apiKeyDetailsQuery = ApiKeyDetailsQuery;
@@ -28,4 +31,7 @@ export default class PnwKitAPI {
   embargoQuery = embargoQuery;
   treasureTradeQuery = treasureTradeQuery;
   treatyQuery = treatyQuery;
+  BBGameQuery = BBGameQuery;
+  BBPlayerQuery = BBPlayerQuery;
+  BBTeamQuery = BBTeamQuery;
 }

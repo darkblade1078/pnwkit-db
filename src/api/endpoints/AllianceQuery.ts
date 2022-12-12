@@ -20,7 +20,7 @@ export interface Parameters {
  * @param {Parameters} params Query parameters to customize your results
  * @param {string} query The graphql query to get info with
  * @param {boolean?} paginator Deliver the data in a paginated format
- * @returns {Promise<Alliance[] | AlliancePaginator>} The nations queried or as paginated
+ * @returns {Promise<Alliance[] | AlliancePaginator>} The alliances queried or as paginated
  */
 export default async function allianceQuery(this: Kit, params: Parameters, query: string, paginator?: false): Promise<Alliance[]>;
 export default async function allianceQuery(this: Kit, params: Parameters, query: string, paginator: true): Promise<AlliancePaginator>;
