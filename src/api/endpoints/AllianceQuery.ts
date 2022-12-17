@@ -2,7 +2,8 @@ import { Kit } from '../..';
 import {
   Alliance,
   AlliancePaginator,
-  QueryAlliancesArgs, QueryAlliancesOrderByOrderByClause,
+  QueryAlliancesArgs, 
+  QueryAlliancesOrderByOrderByClause,
 } from '../../interfaces/PoliticsAndWarGraphQL';
 import GraphQL from '../../services/GraphQL';
 

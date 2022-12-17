@@ -15,6 +15,7 @@ import treatyQuery from './endpoints/TreatyQuery';
 import BBGameQuery from './endpoints/Baseball/BBGameQuery';
 import BBPlayerQuery from './endpoints/Baseball/BBPlayerQuery';
 import BBTeamQuery from './endpoints/Baseball/BBTeamQuery';
+import bankDepositMutation from './endpoints/mutations/BankDepositMutation';
 
 export default class PnwKitAPI {
   apiKeyDetailsQuery = ApiKeyDetailsQuery;
@@ -34,4 +35,5 @@ export default class PnwKitAPI {
   BBGameQuery = BBGameQuery;
   BBPlayerQuery = BBPlayerQuery;
   BBTeamQuery = BBTeamQuery;
+  bankDepositMutation = bankDepositMutation;
 }

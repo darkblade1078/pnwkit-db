@@ -12,7 +12,8 @@ export type AnyQuery =
   QueryTreatiesArgs |
   QueryBaseballGamesArgs |
   QueryBaseballPlayersArgs |
-  QueryBaseballTeamsArgs;
+  QueryBaseballTeamsArgs |
+  MutationBankDepositArgs;
 
 export type Maybe<T> = T | null
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -957,6 +958,12 @@ export type AlliancePaginator = {
   __typename?: 'AlliancePaginator'
   paginatorInfo: PaginatorInfo
   data: Array<Alliance>
+}
+
+export type BankDepositPaginator = {
+  __typename?: 'BankDepositPaginator'
+  paginatorInfo: PaginatorInfo
+  data: Bankrec
 }
 
 export type TradepricePaginator = {

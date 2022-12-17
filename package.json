@@ -1,12 +1,13 @@
 {
   "name": "pnwkit-db",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "A Forked API V3 SDK for PnW with GraphQL Typings",
   "main": "./build/src/index.js",
   "repository": "https://github.com/darkblade1078/pnwkit-db",
   "keywords": [
     "politics and war",
     "pnwkit",
+    "pnwkit-db",
     "pnw",
     "api",
     "darkblade"

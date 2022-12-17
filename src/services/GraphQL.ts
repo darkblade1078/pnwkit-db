@@ -1,6 +1,6 @@
 import superagent from 'superagent';
-import {AnyQuery} from '../interfaces/PoliticsAndWarGraphQL';
-import {ResponseAndMetadataI} from '../interfaces/GraphQLService';
+import { AnyQuery } from '../interfaces/PoliticsAndWarGraphQL';
+import { ResponseAndMetadataI } from '../interfaces/GraphQLService';
 
 /**
  * An internal method of handling calls to the P&W graphQL API
@@ -20,15 +20,15 @@ class GraphQLService {
     if (!apiKey) throw new Error('GraphQLService: Cannot make a call without an API key!');
 
     const res = await superagent.get(this.politicsAndWarAPIRoot)
-        .query({
-          api_key: apiKey,
-          query,
-        })
-        .accept('json')
-        .then()
-        .catch((e: Error) => {
-          throw new Error(`GraphQLService: Failed to make api call, ${e}`);
-        });
+      .query({
+        api_key: apiKey,
+        query,
+      })
+      .accept('json')
+      .then()
+      .catch((e: Error) => {
+        throw new Error(`GraphQLService: Failed to make api call, ${e}`);
+      });
 
     if (!res.body.data) throw new Error(`GraphQLService: Received no data from API call, ${JSON.stringify(res.body)}`);
 
@@ -43,21 +43,23 @@ class GraphQLService {
     };
   }
 
-  public async makeMutationCall(query: string, apiKey: string, x_apikey: string): Promise<ResponseAndMetadataI> {
+  public async makeMutationCall(query: string, apiKey: string, bot_key: string, bot_key_api_key: string): Promise<ResponseAndMetadataI> {
     if (!apiKey) throw new Error('GraphQLService: Cannot make a call without an API key!');
-    if(!x_apikey) throw new Error('GraphQLService: Cannot make a call without an X-API key!');
+    if (!bot_key) throw new Error('GraphQLService: Cannot make a call without an bot key!');
+    if (!bot_key_api_key) throw new Error('GraphQLService: Cannot make a call without a bot_key_api_key!');
 
     const res = await superagent.get(this.politicsAndWarAPIRoot)
-        .query({
-          api_key: apiKey,
-          'X-Bot-Key': x_apikey,
-          query,
-        })
-        .accept('json')
-        .then()
-        .catch((e: Error) => {
-          throw new Error(`GraphQLService: Failed to make api call, ${e}`);
-        });
+      .query({
+        api_key: apiKey,
+        bot_key: bot_key,
+        bot_key_api_key: bot_key_api_key,
+        query,
+      })
+      .accept('json')
+      .then()
+      .catch((e: Error) => {
+        throw new Error(`GraphQLService: Failed to make api call, ${e}`);
+      });
 
     if (!res.body.data) throw new Error(`GraphQLService: Received no data from API call, ${JSON.stringify(res.body)}`);
 
