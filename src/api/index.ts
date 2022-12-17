@@ -16,6 +16,14 @@ import BBGameQuery from './endpoints/Baseball/BBGameQuery';
 import BBPlayerQuery from './endpoints/Baseball/BBPlayerQuery';
 import BBTeamQuery from './endpoints/Baseball/BBTeamQuery';
 import bankDepositMutation from './endpoints/mutations/BankDepositMutation';
+import bankWithdrawMutation from './endpoints/mutations/BankWithdrawMutation';
+import assignTaxBracketMutation from './endpoints/mutations/AssignTaxBracketMutation';
+import editTaxBracketMutation from './endpoints/mutations/EditTaxBracketMutation';
+import createTaxBracketMutation from './endpoints/mutations/CreateTaxBracketMutation';
+import deleteTaxBracketMutation from './endpoints/mutations/DeleteTaxBracketMutation';
+import proposeTreatyMutation from './endpoints/mutations/ProposeTreatyMutation';
+import approveTreatyMutation from './endpoints/mutations/ApproveTreatyMutation';
+import cancelTreatyMutation from './endpoints/mutations/CancelTreatyMutation';
 
 export default class PnwKitAPI {
   apiKeyDetailsQuery = ApiKeyDetailsQuery;
@@ -36,4 +44,12 @@ export default class PnwKitAPI {
   BBPlayerQuery = BBPlayerQuery;
   BBTeamQuery = BBTeamQuery;
   bankDepositMutation = bankDepositMutation;
+  bankWithdrawMutation = bankWithdrawMutation;
+  assignTaxBracketMutation = assignTaxBracketMutation;
+  editTaxBracketMutation = editTaxBracketMutation;
+  createTaxBracketMutation = createTaxBracketMutation;
+  deleteTaxBracketMutation = deleteTaxBracketMutation;
+  proposeTreatyMutation = proposeTreatyMutation;
+  approveTreatyMutation = approveTreatyMutation;
+  cancelTreatyMutation = cancelTreatyMutation;
 }

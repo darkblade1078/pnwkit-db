@@ -1,47 +1,38 @@
 import { Kit } from '../../..';
 import {
-  Bankrec,
-  BankDepositPaginator,
-  MutationBankDepositArgs,
+  TaxBracket,
+  EditTaxBracketPaginator,
+  MutationEditTaxBracketArgs,
 } from '../../../interfaces/PoliticsAndWarGraphQL';
 import GraphQL from '../../../services/GraphQL';
 
 export interface Parameters {
-  money?: number;
-  coal?: number;
-  oil?: number;
-  uranium?: number;
-  iron?: number;
-  bauxite?: number;
-  lead?: number;
-  gasoline?: number;
-  munitions?: number;
-  steel?: number;
-  aluminum?: number;
-  food?: number;
-  note?: string;
+    id: string
+    name?: string;
+    money_tax_rate?: number;
+    resource_tax_rate?: number;
 }
 
 /**
- * Deposit resources into your bank
+ * Approve a treaty for your alliance
  * @param {Parameters} params Query parameters to customize your results
  * @param {string} query The graphql query to get info with
  * @param {boolean} paginator If true it will return paginator info
- * @return {Promise<Bankrec | BankDepositPaginator>}
+ * @return {Promise<TaxBracket| EditTaxBracketPaginator>}
  */
-export default async function bankDepositMutation(this: Kit, params: Parameters, query: string, paginator?: false): Promise<Bankrec>;
-export default async function bankDepositMutation(this: Kit, params: Parameters, query: string, paginator: true): Promise<BankDepositPaginator>;
-export default async function bankDepositMutation(
+export default async function editTaxBracketMutation(this: Kit, params: Parameters, query: string, paginator?: false): Promise<TaxBracket>;
+export default async function editTaxBracketMutation(this: Kit, params: Parameters, query: string, paginator: true): Promise<EditTaxBracketPaginator>;
+export default async function editTaxBracketMutation(
   this: Kit,
   params: Parameters,
   query: string,
   paginator?: boolean,
-): Promise<Bankrec | BankDepositPaginator> {
-  const argsToParameters = GraphQL.generateParameters(params as MutationBankDepositArgs);
+): Promise<TaxBracket | EditTaxBracketPaginator> {
+  const argsToParameters = GraphQL.generateParameters(params as MutationEditTaxBracketArgs);
 
   const res = await GraphQL.makeMutationCall(`
     mutation {
-       bankDeposit${argsToParameters} {
+        editTaxBracket${argsToParameters} {
        ${(paginator) ?
       `
           paginatorInfo {
@@ -73,5 +64,5 @@ export default async function bankDepositMutation(
     return res.data.cities;
   }
 
-  return res.data.bankDeposit as Bankrec;
+  return res.data.bankDeposit as TaxBracket;
 }

@@ -13,7 +13,13 @@ export type AnyQuery =
   QueryBaseballGamesArgs |
   QueryBaseballPlayersArgs |
   QueryBaseballTeamsArgs |
-  MutationBankDepositArgs;
+  MutationBankDepositArgs |
+  MutationApproveTreatyArgs |
+  MutationProposeTreatyArgs |
+  MutationAssignTaxBracketArgs |
+  MutationCreateTaxBracketArgs |
+  MutationDeleteTaxBracketArgs |
+  MutationEditTaxBracketArgs;
 
 export type Maybe<T> = T | null
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -966,10 +972,58 @@ export type BankDepositPaginator = {
   data: Bankrec
 }
 
+export type BankWithdrawPaginator = {
+  __typename?: 'BankWithdrawPaginator'
+  paginatorInfo: PaginatorInfo
+  data: Bankrec
+}
+
+export type ApproveTreatyPaginator = {
+  __typename?: 'ApproveTreatyPaginator'
+  paginatorInfo: PaginatorInfo
+  data: Treaty
+}
+
+export type CancelTreatyPaginator = {
+  __typename?: 'CancelTreatyPaginator'
+  paginatorInfo: PaginatorInfo
+  data: Treaty
+}
+
+export type ProposeTreatyPaginator = {
+  __typename?: 'ProposeTreatyPaginator'
+  paginatorInfo: PaginatorInfo
+  data: Treaty
+}
+
 export type TradepricePaginator = {
   __typename?: 'TradepricePaginator'
   paginatorInfo: PaginatorInfo
   data: Array<Tradeprice>
+}
+
+export type AssignTaxBracketPaginator = {
+  __typename?: 'AssignTaxBracketPaginator'
+  paginatorInfo: PaginatorInfo
+  data: TaxBracket
+}
+
+export type CreateTaxBracketPaginator = {
+  __typename?: 'CreateTaxBracketPaginator'
+  paginatorInfo: PaginatorInfo
+  data: TaxBracket
+}
+
+export type DeleteTaxBracketPaginator = {
+  __typename?: 'DeleteTaxBracketPaginator'
+  paginatorInfo: PaginatorInfo
+  data: TaxBracket
+}
+
+export type EditTaxBracketPaginator = {
+  __typename?: 'EditTaxBracketPaginator'
+  paginatorInfo: PaginatorInfo
+  data: TaxBracket
 }
 
 export type Tradeprice = {
@@ -1322,6 +1376,43 @@ export type MutationBankWithdrawArgs = {
   aluminum?: Maybe<Scalars['Float']>
   food?: Maybe<Scalars['Float']>
   note?: Maybe<Scalars['String']>
+}
+
+export type MutationApproveTreatyArgs = {
+  id: Scalars['ID']
+}
+
+export type MutationCancelTreatyArgs = {
+  id: Scalars['ID']
+}
+
+export type MutationProposeTreatyArgs = {
+  alliance_id: Scalars['ID']
+  length: Scalars['Int']
+  type: Scalars['String']
+  url: Scalars['String']
+}
+
+export type MutationAssignTaxBracketArgs = {
+  id: Scalars['Int']
+  target_id: Scalars['Int']
+}
+
+export type MutationCreateTaxBracketArgs = {
+  name: Scalars['String']
+  money_tax_rate: Scalars['Int']
+  resource_tax_rate: Scalars['Int']
+}
+
+export type MutationDeleteTaxBracketArgs = {
+  id: Scalars['Int']
+}
+
+export type MutationEditTaxBracketArgs = {
+  id: Scalars['ID']
+  name: Scalars['String']
+  money_tax_rate?: Scalars['Int']
+  resource_tax_rate?: Scalars['Int']
 }
 
 export type SimplePaginatorInfo = {
