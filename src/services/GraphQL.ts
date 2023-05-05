@@ -108,7 +108,7 @@ class GraphQLService {
         // for orderBy handling
 
         let interpretedValue = '';
-        interpretedValue += `{`;
+        interpretedValue += `${parameter}: {`;
 
         for (const [k, v] of Object.entries(value)) {
           interpretedValue += `${k}: ${v},`;
@@ -116,6 +116,8 @@ class GraphQLService {
 
         interpretedValue = interpretedValue.slice(0, -1);
         interpretedValue += '}';
+        
+        parameters.push(interpretedValue);
       } else {
         parameters.push(`${parameter}: ${value}`);
       }
