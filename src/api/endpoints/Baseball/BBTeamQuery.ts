@@ -20,7 +20,7 @@ export interface Parameters {
  * @param {Parameters} params Query parameters to customize your results
  * @param {string} query The graphql query to get info with
  * @param {boolean?} paginator Deliver the data in a paginated format
- * @returns {Promise<Nation[] | NationPaginator>} The baseball games queried or as paginated
+ * @returns {Promise<BBTeam[] | BBTeamPaginator>} The baseball games queried or as paginated
  */
 export default async function BBTeamQuery(this: Kit, params: Parameters, query: string, paginator?: false): Promise<BBTeam[]>;
 export default async function BBTeamQuery(this: Kit, params: Parameters, query: string, paginator: true): Promise<BBTeamPaginator>;

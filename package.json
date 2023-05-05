@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "memoizee": "^0.4.15",
+    "pusher-js": "^8.0.2",
     "superagent": "^6.1.0"
   }
 }

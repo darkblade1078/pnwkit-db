@@ -52,8 +52,8 @@ export default async function assignTaxBracketMutation(
     }
   `, 
   this.apiKey,
-  this.bot_key,
-  this.bot_apiKey,
+  this.botKey,
+  this.botKeyApiKey,
   );
 
   this.setRateLimit(res.rateLimit);

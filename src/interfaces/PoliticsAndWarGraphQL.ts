@@ -1453,3 +1453,28 @@ export type OrderByClause = {
   column: Scalars['String']
   order: SortOrder
 }
+
+export enum subscriptionModel {
+  Alliance = 'alliance',
+  AlliancePosition = 'alliance_position',
+  Bankrec = 'backrec',
+  BbGame = 'bbgame',
+  BbTeam = 'bbteam',
+  Bounty = 'bounty',
+  City = 'city',
+  Nation = 'nation',
+  TaxBracket = 'tax_bracket',
+  Trade = 'trade',
+  Treaty = 'treaty',
+  WarAttack = 'warattack',
+  War = 'war',
+  TreasureTrade = 'treasre_trade',
+  Embargo = 'embargo',
+  Account = 'account',
+}
+
+export enum subscriptionEvent {
+  Create = 'create',
+  Update = 'update',
+  Delete = 'delete',
+}

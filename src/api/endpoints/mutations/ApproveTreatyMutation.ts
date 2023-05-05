@@ -51,8 +51,8 @@ export default async function approveTreatyMutation(
     }
   `, 
   this.apiKey,
-  this.bot_key,
-  this.bot_apiKey,
+  this.botKey,
+  this.botKeyApiKey,
   );
 
   this.setRateLimit(res.rateLimit);

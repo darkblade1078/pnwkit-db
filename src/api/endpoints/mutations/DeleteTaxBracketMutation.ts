@@ -7,7 +7,7 @@ import {
 import GraphQL from '../../../services/GraphQL';
 
 export interface Parameters {
-    id: number;
+  id: number;
 }
 
 /**
@@ -49,10 +49,10 @@ export default async function deleteTaxBracketMutation(
         }
       }
     }
-  `, 
-  this.apiKey,
-  this.bot_key,
-  this.bot_apiKey,
+  `,
+    this.apiKey,
+    this.botKey,
+    this.botKeyApiKey,
   );
 
   this.setRateLimit(res.rateLimit);

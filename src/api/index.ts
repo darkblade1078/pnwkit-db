@@ -24,6 +24,7 @@ import deleteTaxBracketMutation from './endpoints/mutations/DeleteTaxBracketMuta
 import proposeTreatyMutation from './endpoints/mutations/ProposeTreatyMutation';
 import approveTreatyMutation from './endpoints/mutations/ApproveTreatyMutation';
 import cancelTreatyMutation from './endpoints/mutations/CancelTreatyMutation';
+import subscribe from './subscriptions/index';
 
 export default class PnwKitAPI {
   apiKeyDetailsQuery = ApiKeyDetailsQuery;
@@ -52,4 +53,5 @@ export default class PnwKitAPI {
   proposeTreatyMutation = proposeTreatyMutation;
   approveTreatyMutation = approveTreatyMutation;
   cancelTreatyMutation = cancelTreatyMutation;
+  subscribe = subscribe;
 }

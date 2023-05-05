@@ -1,13 +1,13 @@
 import { Kit } from '../../..';
 import {
-    Treaty,
-    CancelTreatyPaginator,
-    MutationCancelTreatyArgs,
+  Treaty,
+  CancelTreatyPaginator,
+  MutationCancelTreatyArgs,
 } from '../../../interfaces/PoliticsAndWarGraphQL';
 import GraphQL from '../../../services/GraphQL';
 
 export interface Parameters {
-    id: string;
+  id: string;
 }
 
 /**
@@ -20,18 +20,18 @@ export interface Parameters {
 export default async function cancelTreatyMutation(this: Kit, params: Parameters, query: string, paginator?: false): Promise<Treaty>;
 export default async function cancelTreatyMutation(this: Kit, params: Parameters, query: string, paginator: true): Promise<CancelTreatyPaginator>;
 export default async function cancelTreatyMutation(
-    this: Kit,
-    params: Parameters,
-    query: string,
-    paginator?: boolean,
+  this: Kit,
+  params: Parameters,
+  query: string,
+  paginator?: boolean,
 ): Promise<Treaty | CancelTreatyPaginator> {
-    const argsToParameters = GraphQL.generateParameters(params as MutationCancelTreatyArgs);
+  const argsToParameters = GraphQL.generateParameters(params as MutationCancelTreatyArgs);
 
-    const res = await GraphQL.makeMutationCall(`
+  const res = await GraphQL.makeMutationCall(`
     mutation {
         cancelTreaty${argsToParameters} {
        ${(paginator) ?
-            `
+      `
           paginatorInfo {
             count,
             currentPage,
@@ -43,23 +43,23 @@ export default async function cancelTreatyMutation(
             total
           },
           `: ''
-        }
+    }
         data {
           ${query}
         }
       }
     }
   `,
-        this.apiKey,
-        this.bot_key,
-        this.bot_apiKey,
-    );
+    this.apiKey,
+    this.botKey,
+    this.botKeyApiKey,
+  );
 
-    this.setRateLimit(res.rateLimit);
+  this.setRateLimit(res.rateLimit);
 
-    if (paginator) {
-        return res.data.cities;
-    }
+  if (paginator) {
+    return res.data.cities;
+  }
 
-    return res.data.bankDeposit as Treaty;
+  return res.data.bankDeposit as Treaty;
 }

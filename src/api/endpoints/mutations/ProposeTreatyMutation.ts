@@ -1,16 +1,16 @@
 import { Kit } from '../../..';
 import {
-    Treaty,
-    ProposeTreatyPaginator,
-    MutationProposeTreatyArgs,
+  Treaty,
+  ProposeTreatyPaginator,
+  MutationProposeTreatyArgs,
 } from '../../../interfaces/PoliticsAndWarGraphQL';
 import GraphQL from '../../../services/GraphQL';
 
 export interface Parameters {
-    alliance_id: string;
-    length: number;
-    type: string;
-    url: string
+  alliance_id: string;
+  length: number;
+  type: string;
+  url: string
 }
 
 /**
@@ -23,18 +23,18 @@ export interface Parameters {
 export default async function proposeTreatyMutation(this: Kit, params: Parameters, query: string, paginator?: false): Promise<Treaty>;
 export default async function proposeTreatyMutation(this: Kit, params: Parameters, query: string, paginator: true): Promise<ProposeTreatyPaginator>;
 export default async function proposeTreatyMutation(
-    this: Kit,
-    params: Parameters,
-    query: string,
-    paginator?: boolean,
+  this: Kit,
+  params: Parameters,
+  query: string,
+  paginator?: boolean,
 ): Promise<Treaty | ProposeTreatyPaginator> {
-    const argsToParameters = GraphQL.generateParameters(params as MutationProposeTreatyArgs);
+  const argsToParameters = GraphQL.generateParameters(params as MutationProposeTreatyArgs);
 
-    const res = await GraphQL.makeMutationCall(`
+  const res = await GraphQL.makeMutationCall(`
     mutation {
         proposeTreaty${argsToParameters} {
        ${(paginator) ?
-            `
+      `
           paginatorInfo {
             count,
             currentPage,
@@ -46,23 +46,23 @@ export default async function proposeTreatyMutation(
             total
           },
           `: ''
-        }
+    }
         data {
           ${query}
         }
       }
     }
   `,
-        this.apiKey,
-        this.bot_key,
-        this.bot_apiKey,
-    );
+    this.apiKey,
+    this.botKey,
+    this.botKeyApiKey,
+  );
 
-    this.setRateLimit(res.rateLimit);
+  this.setRateLimit(res.rateLimit);
 
-    if (paginator) {
-        return res.data.cities;
-    }
+  if (paginator) {
+    return res.data.cities;
+  }
 
-    return res.data.bankDeposit as Treaty;
+  return res.data.bankDeposit as Treaty;
 }

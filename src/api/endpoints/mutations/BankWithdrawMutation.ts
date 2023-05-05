@@ -1,27 +1,27 @@
 import { Kit } from '../../..';
 import {
-    Bankrec,
-    BankWithdrawPaginator,
-    MutationBankWithdrawArgs,
+  Bankrec,
+  BankWithdrawPaginator,
+  MutationBankWithdrawArgs,
 } from '../../../interfaces/PoliticsAndWarGraphQL';
 import GraphQL from '../../../services/GraphQL';
 
 export interface Parameters {
-    receiver: string;
-    receiver_type: number;
-    money?: number;
-    coal?: number;
-    oil?: number;
-    uranium?: number;
-    iron?: number;
-    bauxite?: number;
-    lead?: number;
-    gasoline?: number;
-    munitions?: number;
-    steel?: number;
-    aluminum?: number;
-    food?: number;
-    note?: string;
+  receiver: string;
+  receiver_type: number;
+  money?: number;
+  coal?: number;
+  oil?: number;
+  uranium?: number;
+  iron?: number;
+  bauxite?: number;
+  lead?: number;
+  gasoline?: number;
+  munitions?: number;
+  steel?: number;
+  aluminum?: number;
+  food?: number;
+  note?: string;
 }
 
 /**
@@ -34,18 +34,18 @@ export interface Parameters {
 export default async function bankWithdrawMutation(this: Kit, params: Parameters, query: string, paginator?: false): Promise<Bankrec>;
 export default async function bankWithdrawMutation(this: Kit, params: Parameters, query: string, paginator: true): Promise<BankWithdrawPaginator>;
 export default async function bankWithdrawMutation(
-    this: Kit,
-    params: Parameters,
-    query: string,
-    paginator?: boolean,
+  this: Kit,
+  params: Parameters,
+  query: string,
+  paginator?: boolean,
 ): Promise<Bankrec | BankWithdrawPaginator> {
-    const argsToParameters = GraphQL.generateParameters(params as MutationBankWithdrawArgs);
+  const argsToParameters = GraphQL.generateParameters(params as MutationBankWithdrawArgs);
 
-    const res = await GraphQL.makeMutationCall(`
+  const res = await GraphQL.makeMutationCall(`
     mutation {
         bankWithdraw${argsToParameters} {
        ${(paginator) ?
-            `
+      `
           paginatorInfo {
             count,
             currentPage,
@@ -57,23 +57,23 @@ export default async function bankWithdrawMutation(
             total
           },
           `: ''
-        }
+    }
         data {
           ${query}
         }
       }
     }
   `,
-        this.apiKey,
-        this.bot_key,
-        this.bot_apiKey,
-    );
+    this.apiKey,
+    this.botKey,
+    this.botKeyApiKey,
+  );
 
-    this.setRateLimit(res.rateLimit);
+  this.setRateLimit(res.rateLimit);
 
-    if (paginator) {
-        return res.data.cities;
-    }
+  if (paginator) {
+    return res.data.cities;
+  }
 
-    return res.data.bankDeposit as Bankrec;
+  return res.data.bankDeposit as Bankrec;
 }

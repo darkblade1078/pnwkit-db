@@ -7,9 +7,9 @@ import {
 import GraphQL from '../../../services/GraphQL';
 
 export interface Parameters {
-    name: string;
-    money_tax_rate: number;
-    resource_tax_rate: number;
+  name: string;
+  money_tax_rate: number;
+  resource_tax_rate: number;
 }
 
 /**
@@ -51,10 +51,10 @@ export default async function createTaxBracketMutation(
         }
       }
     }
-  `, 
-  this.apiKey,
-  this.bot_key,
-  this.bot_apiKey,
+  `,
+    this.apiKey,
+    this.botKey,
+    this.botKeyApiKey,
   );
 
   this.setRateLimit(res.rateLimit);
