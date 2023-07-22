@@ -37,7 +37,23 @@ export default async function warAttackQuery(
   const res = await GraphQL.makeCall(`
     {
       warattacks${argsToParameters} {
-        ${query}
+        ${(paginator) ?
+    `
+          paginatorInfo {
+            count,
+            currentPage,
+            firstItem,
+            hasMorePages,
+            lastItem,
+            lastPage,
+            perPage,
+            total
+          },
+          `: ''
+  }
+        data {
+          ${query}
+        }
       }
     }
   `, this.apiKey);
@@ -45,7 +61,7 @@ export default async function warAttackQuery(
   this.setRateLimit(res.rateLimit);
 
   if (paginator) {
-    return res.data.warattacks;
+    return res.data.warattacks as WarAttackPaginator;
   }
 
   return res.data.warattacks.data as WarAttack[];

@@ -25,6 +25,7 @@ import proposeTreatyMutation from './endpoints/mutations/ProposeTreatyMutation';
 import approveTreatyMutation from './endpoints/mutations/ApproveTreatyMutation';
 import cancelTreatyMutation from './endpoints/mutations/CancelTreatyMutation';
 import subscribe from './subscriptions/index';
+import warAttackQuery from "./endpoints/WarAttackQuery";
 
 export default class PnwKitAPI {
   apiKeyDetailsQuery = ApiKeyDetailsQuery;
@@ -44,6 +45,7 @@ export default class PnwKitAPI {
   BBGameQuery = BBGameQuery;
   BBPlayerQuery = BBPlayerQuery;
   BBTeamQuery = BBTeamQuery;
+  warAttackQuery = warAttackQuery;
   bankDepositMutation = bankDepositMutation;
   bankWithdrawMutation = bankWithdrawMutation;
   assignTaxBracketMutation = assignTaxBracketMutation;
